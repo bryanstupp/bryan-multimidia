@@ -1,0 +1,51 @@
+/* index.css */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    height: 100vh;
+}
+
+/* LOGO MAIS PRA CIMA */
+.logo {
+    width: 250px;    /* menor para ficar mais bonito */
+    height: auto;
+    display: block;
+    margin-bottom: 60px; /* AQUI aumenta a distância da logo pro login */
+}
+
+/* LOGIN MAIOR E BEM NO CENTRO */
+.container {
+    background: whitesmoke;   /* Corrigido: AGORA FUNCIONA */
+    border: #ffd200 solid 2px;
+    padding: 30px;       /* deixa maior */
+    width: 350px;        /* mais largo */
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* INPUTS */
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+/* BOTÃO */
+button {
+    width: 100%;
+    padding: 12px;
+    background: #007bff;
+    color: black;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
