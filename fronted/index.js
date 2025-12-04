@@ -1,11 +1,11 @@
-// index.js
-function login() {
-  const usuario = document.getElementById("usuario").value;
-  const senha = document.getElementById("senha").value;
+function login(e) {
+  e.preventDefault()  
+  const user = document.getElementById("usuario").value;
+    const pass = document.getElementById("senha").value;
 
-  if (usuario.trim() === "" || senha.trim() === "") {
-    alert("Preencha usuário e senha.");
-  } else {
-    alert("Login aceito.");
-  }
+    if (user !== "" && pass !== "") {
+        window.location.href = "bancada/bancada.html";  
+    } else {
+        alert("Preencha os dois campos.");
+    }
 }

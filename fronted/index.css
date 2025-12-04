@@ -25,7 +25,7 @@ body {
     border: #ffd200 solid 2px;
     padding: 30px;       /* deixa maior */
     width: 350px;        /* mais largo */
-    border-radius: 12px;
+    border-radius: 1px;
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
     text-align: center;
 }
@@ -44,7 +44,7 @@ button {
     width: 100%;
     padding: 12px;
     background: #007bff;
-    color: black;
+    color: #fff;
     border: none;
     border-radius: 6px;
     cursor: pointer;
