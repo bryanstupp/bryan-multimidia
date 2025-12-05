@@ -37,6 +37,7 @@ input {
     margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 6px;
+    box-sizing: border-box;
 }
 
 /* BOTÃO */

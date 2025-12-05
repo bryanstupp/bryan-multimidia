@@ -15,54 +15,96 @@
         <button class="btn-sair">Sair</button>
     </div>
 
-    <!-- MENU DE OPÇÕES -->
-    <div class="menu">
+    <!-- MENU LATERAL -->
+    <aside class="menu-lateral">
         <button onclick="mostrarDashboard()">Dashboard</button>
-        <button onclick="irPedidos()">Pedidos</button>
-        <button onclick="irUsuarios()">Usuários</button>
-    </div>
+        <button onclick="mostrarUsuarios()">Usuários</button>
+        <button onclick="mostrarPedidos()">Pedidos</button>
+    </aside>
 
-    <!-- ÁREA DE CONTEÚDO (DASHBOARD AQUI) -->
-    <div id="conteudo">
-        
-        <!-- DASHBOARD PADRÃO -->
-        <div class="dashboard">
+    <!-- ÁREA PRINCIPAL -->
+    <main class="conteudo">
 
-            <div class="card">
-                <img src="bancada_estoque.png">
-                <h3>Módulo Estoque</h3>
-                <p>Temperatura: 0°C</p>
-                <p>Umidade: 0%</p>
-                <p>Estoque de Bases: 0</p>
+        <!-- DASHBOARD -->
+        <section id="dashboard" class="secao">
+            <h2>Dashboard</h2>
+
+            <div class="cards">
+                <div class="card">
+                    <h3>Estoque</h3>
+                    <p>Temperatura: 0°C</p>
+                    <p>Umidade: 0%</p>
+                    <p>Bases: 0</p>
+                </div>
+
+                <div class="card">
+                    <h3>Processo</h3>
+                    <p>Temperatura: 0°C</p>
+                    <p>Umidade: 0%</p>
+                    <p>Estoque centralizado</p>
+                </div>
+
+                <div class="card">
+                    <h3>Montagem</h3>
+                    <p>Temperatura: 0°C</p>
+                    <p>Umidade: 0%</p>
+                    <p>Status: PASS</p>
+                </div>
+
+                <div class="card">
+                    <h3>Expedição</h3>
+                    <p>Temperatura: 0°C</p>
+                    <p>Umidade: 0%</p>
+                    <p>Produtos prontos: 0</p>
+                </div>
             </div>
+        </section>
 
-            <div class="card">
-                <img src="bancada_processo.png">
-                <h3>Módulo Processo</h3>
-                <p>Temperatura: 0°C</p>
-                <p>Umidade: 0%</p>
-                <p>Estoque gerenciado centralmente</p>
+        <!-- USUÁRIOS -->
+        <section id="usuarios" class="secao" style="display:none;">
+            <h2>Gestão de Usuários</h2>
+
+            <div class="container-usuarios">
+
+                <!-- CADASTRO -->
+                <div class="box">
+                    <h3>Cadastrar Usuário</h3>
+
+                    <input id="nome" type="text" placeholder="Nome">
+                    <input id="sobrenome" type="text" placeholder="Sobrenome">
+                    <input id="nascimento" type="date">
+
+                    <input id="email" type="email" placeholder="E-mail">
+                    <input id="senha" type="password" placeholder="Senha">
+
+                    <button class="btn" onclick="cadastrarUsuario()">Cadastrar</button>
+                </div>
+
+                <!-- TABELA -->
+                <div class="box">
+                    <h3>Usuários Cadastrados</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Sobrenome</th>
+                                <th>Nascimento</th>
+                                <th>E-mail</th>
+                            </tr>
+                        </thead>
+                        <tbody id="listaUsuarios"></tbody>
+                    </table>
+                </div>
             </div>
+        </section>
 
-            <div class="card">
-                <img src="bancada_montagem.png">
-                <h3>Módulo Montagem</h3>
-                <p>Temperatura: 0°C</p>
-                <p>Umidade: 0%</p>
-                <p>status do teste: PASS</p>
-            </div>
+        <!-- PEDIDOS (a ser usado depois) -->
+        <section id="pedidos" class="secao" style="display:none;">
+            <h2>Pedidos</h2>
+            <p>Em desenvolvimento…</p>
+        </section>
 
-            <div class="card">
-                <img src="bancada_expedicao (1).png">
-                <h3>Módulo Expedição</h3>
-                <p>Temperatura: 0°C</p>
-                <p>Umidade: 0%</p>
-                <p>Estoque de produtos acabados</p>
-            </div>
-
-        </div>
-
-    </div>
+    </main>
 
 <script src="bancada.js"></script>
 </body>
