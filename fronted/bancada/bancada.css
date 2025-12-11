@@ -71,18 +71,41 @@ body {
     gap: 25px;
 }
 
-/* CARDS DO DASHBOARD */
+/* ==== CARDS DO DASHBOARD ==== */
 .cards {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 25px;
+
+    height: calc(100vh - 150px);
 }
 
 .card {
     background: white;
     border-radius: 12px;
-    padding: 25px;
     box-shadow: 0 0 6px rgba(0,0,0,0.15);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    height: 100%;
+    padding: 15px;
+
+    overflow: hidden; /* <<< AQUI */
+}
+
+/* IMAGENS (um pouco menores agora) */
+.card-img {
+    width: 100%;
+    height: 65%;   /* antes 75%, diminuí só um pouco */
+
+    object-fit: contain;
+    background: #f4f4f4;
+    border-radius: 10px;
+
+    padding: 10px;
+    margin-bottom: 10px;
 }
 
 /* USUÁRIOS */
@@ -105,10 +128,6 @@ body {
     padding: 12px;
     border-radius: 8px;
     border: 1px solid #999;
-}
-
-.box input[type="date"] {
-    padding: 12px;
 }
 
 .btn {

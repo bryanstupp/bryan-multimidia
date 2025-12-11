@@ -1,3 +1,22 @@
+window.onload = ()=>{
+    polling(5)
+}
+
+function polling(segundos){
+    setTimeout(()=>{
+        console.log('Buscando...')
+        buscarDadosBancada()
+        polling(segundos)
+    },segundos*1000)
+}
+
+function buscarDadosBancada(){
+    fetch('http://.241.158:1880/api/smartsense/estoque')
+    .then(res=>res.json())
+    .then(data=>{
+        console.log(data)
+    })
+}
 document.addEventListener("DOMContentLoaded", () => {
 
     console.log("JS carregado");
