@@ -1,4 +1,6 @@
 /* index.css */
+
+/* GERAL */
 body {
     margin: 0;
     padding: 0;
@@ -6,27 +8,27 @@ body {
     background: #fff;
     display: flex;
     flex-direction: column;
-    justify-content: center; 
+    justify-content: center;
     align-items: center;
     height: 100vh;
 }
 
-/* LOGO MAIS PRA CIMA */
+/* LOGO */
 .logo {
-    width: 250px;    /* menor para ficar mais bonito */
+    width: 230px;
     height: auto;
     display: block;
-    margin-bottom: 60px; /* AQUI aumenta a distância da logo pro login */
+    margin-bottom: 50px;  /* distância da logo pro login */
 }
 
-/* LOGIN MAIOR E BEM NO CENTRO */
+/* CAIXA DE LOGIN */
 .container {
-    background: whitesmoke;   /* Corrigido: AGORA FUNCIONA */
-    border: #ffd200 solid 2px;
-    padding: 30px;       /* deixa maior */
-    width: 350px;        /* mais largo */
-    border-radius: 1px;
-    box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+    background: whitesmoke;
+    border: 2px solid #ffd200;
+    padding: 35px;
+    width: 340px;
+    border-radius: 6px;
+    box-shadow: 0 0 14px rgba(0,0,0,0.25);
     text-align: center;
 }
 
@@ -37,6 +39,7 @@ input {
     margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 6px;
+    font-size: 15px;
     box-sizing: border-box;
 }
 
@@ -45,8 +48,14 @@ button {
     width: 100%;
     padding: 12px;
     background: #007bff;
-    color: #fff;
+    color: white;
     border: none;
     border-radius: 6px;
     cursor: pointer;
+    font-size: 15px;
+}
+
+/* BOTÃO HOVER */
+button:hover {
+    background: #005fcc;
 }

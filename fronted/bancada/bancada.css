@@ -1,14 +1,14 @@
-/* GERAL */
+/* ====================== GERAL ====================== */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #ececec;
-    display: flex;
+    background: #e6e6e6;
     height: 100vh;
     overflow: hidden;
+    display: flex;
 }
 
-/* TOPO */
+/* ====================== TOPO ====================== */
 .topo {
     width: 100%;
     height: 60px;
@@ -29,124 +29,162 @@ body {
     color: white;
     border: none;
     padding: 8px 14px;
-    border-radius: 6px;
+    border-radius: 5px;
     cursor: pointer;
 }
 
-/* MENU LATERAL */
+/* ====================== MENU LATERAL ====================== */
 .menu-lateral {
-    width: 230px;
+    width: 200px;
     background: #0d0d0d;
     padding-top: 80px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
+    position: fixed;
+    top: 0;
+    height: 100vh;
 }
 
 .menu-lateral button {
     background: #1a1a1a;
     color: white;
     border: none;
-    padding: 15px;
-    cursor: pointer;
+    padding: 15px 20px;
     text-align: left;
-    padding-left: 20px;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
 .menu-lateral button:hover {
     background: #272727;
 }
 
-/* ÁREA PRINCIPAL */
+/* ====================== CONTEÚDO ====================== */
 .conteudo {
     flex: 1;
-    padding: 90px 40px;
-    overflow-y: auto;
-}
-
-/* SEÇÕES */
-.secao {
+    margin-left: 200px;
+    padding: 80px 20px;
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
-/* ==== CARDS DO DASHBOARD ==== */
+/* ====================== DASHBOARD ====================== */
 .cards {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 25px;
-
-    height: calc(100vh - 150px);
+    display: flex;
+    justify-content: center; /* centraliza horizontal */
+    gap: 20px;
+    flex-wrap: nowrap; /* força 4 colunas na mesma linha */
+    height: 100%; /* ocupa toda altura disponível */
 }
 
 .card {
     background: white;
     border-radius: 12px;
     box-shadow: 0 0 6px rgba(0,0,0,0.15);
-
     display: flex;
     flex-direction: column;
-    align-items: center;
-
-    height: 100%;
-    padding: 15px;
-
-    overflow: hidden; /* <<< AQUI */
+    overflow: hidden;
+    width: 220px;
+    min-height: 350px;
+    box-sizing: border-box;
 }
 
-/* IMAGENS (um pouco menores agora) */
-.card-img {
+.card-img-wrapper {
     width: 100%;
-    height: 65%;   /* antes 75%, diminuí só um pouco */
-
-    object-fit: contain;
-    background: #f4f4f4;
-    border-radius: 10px;
-
-    padding: 10px;
-    margin-bottom: 10px;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
-/* USUÁRIOS */
+.card-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.card-content {
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: none;
+    word-wrap: break-word;
+}
+
+/* ====================== ESTOQUE ====================== */
+.bases-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 30px);
+    gap: 5px;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.base {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #333;
+    box-sizing: border-box;
+}
+
+.base.preto { background: black; }
+.base.azul { background: blue; }
+.base.vermelho { background: red; }
+.base.ocupado { background: gray; }
+
+/* ====================== USUÁRIOS ====================== */
 .container-usuarios {
     display: flex;
-    gap: 40px;
+    gap: 20px;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: nowrap;
 }
 
 .box {
+    width: 300px;
     background: white;
-    padding: 25px;
-    width: 45%;
+    padding: 15px;
     border-radius: 12px;
     box-shadow: 0 0 6px rgba(0,0,0,0.15);
+    box-sizing: border-box;
 }
 
-.box input {
+.box input,
+.box select,
+.box button {
+    padding: 8px;
+    margin-bottom: 8px;
     width: 100%;
-    margin-bottom: 10px;
-    padding: 12px;
-    border-radius: 8px;
+    border-radius: 6px;
     border: 1px solid #999;
+    box-sizing: border-box;
+    word-wrap: break-word;
 }
 
-.btn {
-    padding: 12px;
-    background: black;
-    color: white;
-    border-radius: 8px;
-    border: none;
-    width: 100%;
-    cursor: pointer;
-}
-
-/* TABELA */
+/* ====================== TABELAS ====================== */
 table {
     width: 100%;
     border-collapse: collapse;
+    font-size: 0.9rem;
 }
 
 th, td {
-    padding: 12px;
+    padding: 8px;
     border-bottom: 1px solid #ccc;
+    text-align: center;
+}
+
+/* ====================== PEDIDOS ====================== */
+#pedidos .box {
+    width: 300px;
+    margin-bottom: 10px;
 }
