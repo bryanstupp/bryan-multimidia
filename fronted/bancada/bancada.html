@@ -43,7 +43,7 @@
                             <p>Umidade: <span class="valor">--</span></p>
                             <p>Bases livres: <span id="basesLivres">--</span> / 28</p>
                             <div id="listaBases" class="bases-grid"></div>
-                            <button class="btn" id="btnRandomOccupy">Ocupar aleatório</button>
+                            <button class="btn" onclick="ocuparAleatorio()">Ocupar aleatório</button>
                             <button class="btn" onclick="resetarBases()">Resetar</button>
                         </div>
                     </div>
@@ -107,8 +107,8 @@
                             <option value="aluno">Aluno</option>
                         </select>
                         <div style="display:flex;gap:8px;">
-                            <button class="btn" id="btnCadastrar">Salvar</button>
-                            <button class="btn" id="btnCancelarEdit" style="background:#777">Cancelar</button>
+                            <button class="btn" onclick="cadastrarUsuario()">Salvar</button>
+                            <button class="btn" onclick="cancelarEdicao()" style="background:#777">Cancelar</button>
                         </div>
                     </div>
                     <div class="box">
@@ -151,7 +151,7 @@
                         <option>Finalizado</option>
                         <option>Cancelado</option>
                     </select>
-                    <button class="btn" id="btnCriarPedido">Criar</button>
+                    <button class="btn" onclick="criarPedido()">Criar</button>
                 </div>
                 <div class="box" style="margin-top:12px;">
                     <h3>Pedidos Registrados</h3>

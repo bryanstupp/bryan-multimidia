@@ -1,164 +1,195 @@
-// ================= NAVEGAÇÃO ENTRE TELAS =================
+// ================= ELEMENTOS =================
+const dashboard = document.getElementById("dashboard");
+const usuarios  = document.getElementById("usuarios");
+const pedidos   = document.getElementById("pedidos");
+
+const listaBases   = document.getElementById("listaBases");
+const basesLivres  = document.getElementById("basesLivres");
+
+const listaUsuarios = document.getElementById("listaUsuarios");
+const nomeInput = document.getElementById("nome");
+const sobrenomeInput = document.getElementById("sobrenome");
+const tipoUsuario = document.getElementById("tipoUsuario");
+
+const listaPedidos = document.getElementById("listaPedidos");
+const pedidoCliente = document.getElementById("pedidoCliente");
+const pedidoBase = document.getElementById("pedidoBase");
+const pedidoStatus = document.getElementById("pedidoStatus");
+
+document.querySelector(".btn-sair").onclick = () =>
+  location.href = "../index.html";
+
+// ================= NAVEGAÇÃO =================
+function esconderTudo() {
+  dashboard.style.display = "none";
+  usuarios.style.display = "none";
+  pedidos.style.display = "none";
+}
+
 function mostrarDashboard() {
-    document.getElementById("dashboard").style.display = "grid";
-    document.getElementById("usuarios").style.display = "none";
-    document.getElementById("pedidos").style.display = "none";
+  esconderTudo();
+  dashboard.style.display = "block";
 }
 
 function mostrarUsuarios() {
-    document.getElementById("dashboard").style.display = "none";
-    document.getElementById("usuarios").style.display = "flex";
-    document.getElementById("pedidos").style.display = "none";
+  esconderTudo();
+  usuarios.style.display = "block";
 }
 
 function mostrarPedidos() {
-    document.getElementById("dashboard").style.display = "none";
-    document.getElementById("usuarios").style.display = "none";
-    document.getElementById("pedidos").style.display = "block";
+  esconderTudo();
+  pedidos.style.display = "block";
 }
 
-// Botão sair
-document.querySelector(".btn-sair").onclick = () => location.href="../index.html";
+mostrarDashboard();
 
 // ================= ESTOQUE =================
-const cores = ['preto', 'azul', 'vermelho'];
-let bases = Array.from({length: 28}, () => cores[Math.floor(Math.random()*3)]);
+const cores = ["azul","preto","vermelho"];
+let bases = Array.from({ length: 28 }, () =>
+  cores[Math.floor(Math.random() * 3)]
+);
 
 function mostrarBases() {
-    const container = document.getElementById("listaBases");
-    container.innerHTML = "";
-    bases.forEach(c => {
-        container.innerHTML += `<div class="base ${c}"></div>`;
-    });
-    document.getElementById("basesLivres").textContent = bases.filter(b => b !== 'ocupado').length;
+  listaBases.innerHTML = "";
+  bases.forEach(b => {
+    listaBases.innerHTML += `<div class="base ${b}"></div>`;
+  });
+  basesLivres.textContent = bases.filter(b => b !== "ocupado").length;
 }
 
 function ocuparAleatorio() {
-    const livres = bases.map((b,i)=>b!=='ocupado'?i:-1).filter(i=>i!==-1);
-    if (livres.length === 0) { alert("Todas ocupadas!"); return; }
-    bases[livres[Math.floor(Math.random()*livres.length)]] = 'ocupado';
-    mostrarBases();
+  const livres = bases
+    .map((b,i)=> b !== "ocupado" ? i : null)
+    .filter(i => i !== null);
+
+  if (!livres.length) return alert("Todas ocupadas");
+
+  bases[livres[Math.floor(Math.random()*livres.length)]] = "ocupado";
+  mostrarBases();
 }
 
 function resetarBases() {
-    bases = Array.from({length: 28}, () => cores[Math.floor(Math.random()*3)]);
-    mostrarBases();
+  bases = Array.from({ length: 28 }, () =>
+    cores[Math.floor(Math.random() * 3)]
+  );
+  mostrarBases();
 }
 
 mostrarBases();
 
 // ================= USUÁRIOS =================
-let listaUsuarios = [], editando = null;
+let usuariosDB = JSON.parse(localStorage.getItem("usuariosDB")) || [];
 
-function atualizarTabelaUsuarios() {
-    const tabela = document.getElementById("listaUsuarios");
-    tabela.innerHTML = "";
-    listaUsuarios.forEach((u,i)=>{
-        tabela.innerHTML += `
-        <tr>
-            <td>${u.nome}</td>
-            <td>${u.sobrenome}</td>
-            <td>${u.tipo}</td>
-            <td>
-                <button onclick="editarUsuario(${i})">Editar</button>
-                <button onclick="excluirUsuario(${i})" style="background:red;color:white;">Excluir</button>
-            </td>
-        </tr>`;
-    });
+const userLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+if (userLogado) {
+  const jaExiste = usuariosDB.some(
+    u => u.nome === userLogado.nome && u.sobrenome === userLogado.sobrenome
+  );
+  if (!jaExiste) {
+    usuariosDB.push(userLogado);
+    localStorage.setItem("usuariosDB", JSON.stringify(usuariosDB));
+  }
+}
+
+let editando = null;
+
+function renderUsuarios() {
+  listaUsuarios.innerHTML = "";
+  usuariosDB.forEach((u,i) => {
+    listaUsuarios.innerHTML += `
+      <tr>
+        <td>${u.nome}</td>
+        <td>${u.sobrenome}</td>
+        <td>${u.tipo}</td>
+        <td>
+          <button onclick="editarUsuario(${i})">Editar</button>
+          <button onclick="excluirUsuario(${i})">Excluir</button>
+        </td>
+      </tr>`;
+  });
 }
 
 function cadastrarUsuario() {
-    const nome = document.getElementById("nome").value.trim();
-    const sobrenome = document.getElementById("sobrenome").value.trim();
-    const tipo = document.getElementById("tipoUsuario").value;
+  const nome = nomeInput.value.trim();
+  const sobrenome = sobrenomeInput.value.trim();
+  const tipo = tipoUsuario.value;
 
-    if (!nome || !sobrenome) { alert("Preencha todos os campos"); return; }
+  if (!nome || !sobrenome) return alert("Preencha tudo");
 
-    const user = {nome, sobrenome, tipo};
+  const user = { nome, sobrenome, tipo };
 
-    if (editando !== null) {
-        listaUsuarios[editando] = user;
-        editando = null;
-    } else {
-        listaUsuarios.push(user);
-    }
+  if (editando !== null) {
+    usuariosDB[editando] = user;
+    editando = null;
+  } else {
+    usuariosDB.push(user);
+  }
 
-    document.getElementById("nome").value = "";
-    document.getElementById("sobrenome").value = "";
-
-    atualizarTabelaUsuarios();
+  localStorage.setItem("usuariosDB", JSON.stringify(usuariosDB));
+  limparUsuario();
+  renderUsuarios();
 }
 
 function editarUsuario(i) {
-    const u = listaUsuarios[i];
-    document.getElementById("nome").value = u.nome;
-    document.getElementById("sobrenome").value = u.sobrenome;
-    document.getElementById("tipoUsuario").value = u.tipo;
-    editando = i;
+  const u = usuariosDB[i];
+  nomeInput.value = u.nome;
+  sobrenomeInput.value = u.sobrenome;
+  tipoUsuario.value = u.tipo;
+  editando = i;
 }
 
 function excluirUsuario(i) {
-    if (confirm("Excluir usuário?")) {
-        listaUsuarios.splice(i,1);
-        atualizarTabelaUsuarios();
-    }
+  usuariosDB.splice(i, 1);
+  localStorage.setItem("usuariosDB", JSON.stringify(usuariosDB));
+  renderUsuarios();
 }
 
-// ================= PEDIDOS =================
-let listaPedidos = [];
+function cancelarEdicao() {
+  limparUsuario();
+  editando = null;
+}
 
-function atualizarTabelaPedidos() {
-    const tabela = document.getElementById("listaPedidos");
-    tabela.innerHTML = "";
-    listaPedidos.forEach((p,i)=>{
-        tabela.innerHTML += `
-        <tr>
-            <td>${p.cliente}</td>
-            <td>${p.base}</td>
-            <td>${p.status}</td>
-            <td>${p.paredeA}-${p.paredeB}-${p.paredeC}</td>
-            <td>
-                <button onclick="editarPedido(${i})">Editar</button>
-                <button onclick="excluirPedido(${i})" style="background:red;color:white;">Excluir</button>
-            </td>
-        </tr>`;
-    });
+function limparUsuario() {
+  nomeInput.value = "";
+  sobrenomeInput.value = "";
+}
+
+renderUsuarios();
+
+// ================= PEDIDOS =================
+let pedidosDB = [];
+
+function renderPedidos() {
+  listaPedidos.innerHTML = "";
+  pedidosDB.forEach((p,i) => {
+    listaPedidos.innerHTML += `
+      <tr>
+        <td>${p.cliente}</td>
+        <td>${p.base}</td>
+        <td>${p.status}</td>
+        <td>
+          <button>Editar</button>
+          <button onclick="excluirPedido(${i})">Excluir</button>
+        </td>
+      </tr>`;
+  });
 }
 
 function criarPedido() {
-    const cliente = document.getElementById("pedidoCliente").value.trim();
-    const base = document.getElementById("pedidoBase").value;
-    const paredeA = document.getElementById("paredeA").value;
-    const paredeB = document.getElementById("paredeB").value;
-    const paredeC = document.getElementById("paredeC").value;
-    const status = document.getElementById("pedidoStatus").value;
+  const cliente = pedidoCliente.value.trim();
+  if (!cliente) return alert("Cliente vazio");
 
-    if (!cliente) { alert("Preencha o cliente"); return; }
+  pedidosDB.push({
+    cliente,
+    base: pedidoBase.value,
+    status: pedidoStatus.value
+  });
 
-    listaPedidos.push({cliente, base, paredeA, paredeB, paredeC, status});
-
-    document.getElementById("pedidoCliente").value = "";
-    document.getElementById("paredeA").value = "";
-    document.getElementById("paredeB").value = "";
-    document.getElementById("paredeC").value = "";
-
-    atualizarTabelaPedidos();
-}
-
-function editarPedido(i) {
-    const p = listaPedidos[i];
-    document.getElementById("pedidoCliente").value = p.cliente;
-    document.getElementById("pedidoBase").value = p.base;
-    document.getElementById("paredeA").value = p.paredeA;
-    document.getElementById("paredeB").value = p.paredeB;
-    document.getElementById("paredeC").value = p.paredeC;
-    document.getElementById("pedidoStatus").value = p.status;
-    listaPedidos.splice(i,1);
+  pedidoCliente.value = "";
+  renderPedidos();
 }
 
 function excluirPedido(i) {
-    if(confirm("Excluir pedido?")) {
-        listaPedidos.splice(i,1);
-        atualizarTabelaPedidos();
-    }
+  pedidosDB.splice(i, 1);
+  renderPedidos();
 }
