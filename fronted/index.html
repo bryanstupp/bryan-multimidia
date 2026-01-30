@@ -13,8 +13,8 @@
 
   <!-- Container do login -->
   <div class="container">
-    <form onsubmit="fazerLogin(); return false;">
-      <input type="text" id="nome" placeholder="Nome" required />
+    <form onsubmit="login(event); return false;">
+      <input type="text" id="usuario" placeholder="Usuario" required />
       <input type="text" id="sobrenome" placeholder="Sobrenome" required />
       <input type="email" id="email" placeholder="E-mail" required />
       <input type="senha" id="senha" placeholder="Senha" required />

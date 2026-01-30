@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Usuários</title>
+  <link rel="stylesheet" href="usuarios.css">
+</head>
+<body>
+
+<header class="topo">
+  <h1>Usuários</h1>
+  <button class="btn-sair" onclick="location.href='../index.html'">Sair</button>
+</header>
+
+<main class="conteudo">
+  <section class="usuarios">
+    <div class="container-usuarios">
+
+      <div class="box">
+        <h3>Cadastrar / Editar</h3>
+        <input id="nome" placeholder="Nome">
+        <input id="sobrenome" placeholder="Sobrenome">
+        <input id="nascimento" type="date">
+        <input id="email" placeholder="E-mail">
+        <input id="senha" type="password" placeholder="Senha">
+
+        <select id="tipoUsuario">
+          <option value="professor">Professor</option>
+          <option value="aluno">Aluno</option>
+        </select>
+
+        <div class="acoes">
+          <button onclick="salvarUsuario()">Salvar</button>
+          <button class="cancelar" onclick="cancelarEdicao()">Cancelar</button>
+        </div>
+      </div>
+
+      <div class="box">
+        <h3>Lista de Usuários</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Sobrenome</th>
+              <th>Tipo</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="listaUsuarios"></tbody>
+        </table>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<script src="usuarios.js"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #e6e6e6;
+}
+
+/* TOPO */
+.topo {
+  height: 60px;
+  background: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.btn-sair {
+  position: absolute;
+  right: 20px;
+  background: red;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* CONTEÚDO */
+.conteudo {
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.container-usuarios {
+  display: flex;
+  gap: 20px;
+}
+
+/* BOX */
+.box {
+  width: 320px;
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.15);
+}
+
+.box input,
+.box select,
+.box button {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  border: 1px solid #999;
+}
+
+.acoes {
+  display: flex;
+  gap: 8px;
+}
+
+.cancelar {
+  background: #777;
+  color: white;
+}
+
+/* TABELA */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+th, td {
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+}

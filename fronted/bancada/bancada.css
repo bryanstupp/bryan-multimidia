@@ -1,190 +1,112 @@
-/* ====================== GERAL ====================== */
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #e6e6e6;
-    height: 100vh;
-    overflow: hidden;
-    display: flex;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #e6e6e6;
 }
 
-/* ====================== TOPO ====================== */
+/* TOPO */
 .topo {
-    width: 100%;
-    height: 60px;
-    background: black;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    z-index: 10;
+  height: 60px;
+  background: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  width: 100%;
 }
 
 .btn-sair {
-    position: absolute;
-    right: 20px;
-    background: red;
-    color: white;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 5px;
-    cursor: pointer;
+  position: absolute;
+  right: 20px;
+  background: red;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 5px;
 }
 
-/* ====================== MENU LATERAL ====================== */
+/* MENU */
 .menu-lateral {
-    width: 200px;
-    background: #0d0d0d;
-    padding-top: 80px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    position: fixed;
-    top: 0;
-    height: 100vh;
+  width: 200px;
+  background: #0d0d0d;
+  padding-top: 80px;
+  position: fixed;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .menu-lateral button {
-    background: #1a1a1a;
-    color: white;
-    border: none;
-    padding: 15px 20px;
-    text-align: left;
-    cursor: pointer;
-    border-radius: 5px;
+  background: #1a1a1a;
+  color: white;
+  border: none;
+  padding: 15px 20px;
+  text-align: left;
+  cursor: pointer;
 }
 
-.menu-lateral button:hover {
-    background: #272727;
-}
-
-/* ====================== CONTEÚDO ====================== */
+/* CONTEÚDO */
 .conteudo {
-    flex: 1;
-    margin-left: 200px;
-    padding: 80px 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+  margin-left: 200px;
+  padding: 80px 20px;
 }
 
-/* ====================== DASHBOARD ====================== */
+/* DASHBOARD */
 .cards {
-    display: flex;
-    justify-content: center; /* centraliza horizontal */
-    gap: 20px;
-    flex-wrap: nowrap; /* força 4 colunas na mesma linha */
-    height: 100%; /* ocupa toda altura disponível */
+  display: flex;
+  gap: 20px;
 }
 
 .card {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 0 6px rgba(0,0,0,0.15);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    width: 220px;
-    min-height: 350px;
-    box-sizing: border-box;
-}
-
-.card-img-wrapper {
-    width: 100%;
-    height: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
-
-.card-img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
+  background: white;
+  width: 220px;
+  border-radius: 12px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.15);
 }
 
 .card-content {
-    padding: 10px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    flex: none;
-    word-wrap: break-word;
+  padding: 10px;
+  text-align: center;
 }
 
-/* ====================== ESTOQUE ====================== */
+/* ESTOQUE */
 .bases-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 30px);
-    gap: 5px;
-    justify-content: center;
-    margin: 10px 0;
+  display: grid;
+  grid-template-columns: repeat(7, 22px);
+  gap: 5px;
+  justify-content: center;
 }
 
 .base {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    border: 1px solid #333;
-    box-sizing: border-box;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
 }
 
-.base.preto { background: black; }
 .base.azul { background: blue; }
+.base.preto { background: black; }
 .base.vermelho { background: red; }
 .base.ocupado { background: gray; }
 
-/* ====================== USUÁRIOS ====================== */
-.container-usuarios {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    align-items: flex-start;
-    flex-wrap: nowrap;
-}
-
+/* PEDIDOS */
 .box {
-    width: 300px;
-    background: white;
-    padding: 15px;
-    border-radius: 12px;
-    box-shadow: 0 0 6px rgba(0,0,0,0.15);
-    box-sizing: border-box;
+  width: 300px;
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.15);
+  margin-bottom: 10px;
 }
 
-.box input,
-.box select,
-.box button {
-    padding: 8px;
-    margin-bottom: 8px;
-    width: 100%;
-    border-radius: 6px;
-    border: 1px solid #999;
-    box-sizing: border-box;
-    word-wrap: break-word;
-}
-
-/* ====================== TABELAS ====================== */
 table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.9rem;
+  width: 100%;
+  border-collapse: collapse;
 }
 
 th, td {
-    padding: 8px;
-    border-bottom: 1px solid #ccc;
-    text-align: center;
-}
-
-/* ====================== PEDIDOS ====================== */
-#pedidos .box {
-    width: 300px;
-    margin-bottom: 10px;
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
 }

@@ -1,33 +1,22 @@
+// LOGIN
 function login(e) {
-  e.preventDefault()  
-  const user = document.getElementById("usuario").value;
-    const pass = document.getElementById("senha").value;
+  e.preventDefault()
 
-    if (user !== "" && pass !== "") {
-        window.location.href = "bancada/bancada.html";  
-    } else {
-        alert("Preencha os dois campos.");
-    }
+  const usuario = document.getElementById("usuario").value
+  const senha = document.getElementById("senha").value
+
+  fetch("http://localhost:1880/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ usuario, senha })
+  })
+  .then(resposta => resposta.json())
+  .then(dados => {
+    window.location.href = "bancada/bancada.html"
+    // NÃO faz nada se não for sucesso
+  })
 }
-function fazerLogin() {
-  const nome = document.getElementById("nome").value.trim();
-  const sobrenome = document.getElementById("sobrenome").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const tipo = document.getElementById("tipoUsuario").value;
 
-  if (!nome || !sobrenome || !email) {
-    alert("Preencha todos os campos");
-    return;
-  }
 
-  const usuario = {
-    nome,
-    sobrenome,
-    email,
-    tipo
-  };
-
-  localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
-
-  location.href = "bancada/bancada.html";
-}
