@@ -1,88 +1,175 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bancada</title>
-  <link rel="stylesheet" href="bancada.css"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bancada</title>
+    <link rel="stylesheet" href="bancada.css"/>
 </head>
 <body>
 
-<header class="topo">
-  <h1>Bancada</h1>
-  <button class="btn-sair" id="btnSair">Sair</button>
-</header>
+    <!-- TOPO -->
+    <header class="topo">
+        <h1>Bancada</h1>
+        <button class="btn-sair" id="btnSair">Sair</button>
+    </header>
 
-<div class="layout">
+    <div class="layout">
 
-  <nav class="menu-lateral">
-    <button onclick="mostrarDashboard()">Dashboard</button>
-    <button onclick="mostrarPedidos()">Pedidos</button>
-    <button onclick="irParaUsuarios()">Usuários</button>
-  </nav>
+        <!-- MENU -->
+        <nav class="menu-lateral">
+            <button onclick="mostrarDashboard()">Dashboard</button>
+            <button onclick="mostrarUsuarios()">Usuários</button>
+            <button onclick="mostrarPedidos()">Pedidos</button>
+        </nav>
 
-  <main class="conteudo">
+        <!-- CONTEÚDO -->
+        <main class="conteudo">
 
-    <!-- DASHBOARD -->
-    <section id="dashboard" class="secao">
-      <h2>Dashboard</h2>
+            <!-- DASHBOARD -->
+            <section id="dashboard" class="secao">
+                <h2>Dashboard</h2>
 
-      <div class="cards">
-        <div class="card">
-          <div class="card-content">
-            <h3>Estoque</h3>
-            <p>Bases livres: <span id="basesLivres">--</span> / 28</p>
-            <div id="listaBases" class="bases-grid"></div>
-            <button onclick="ocuparAleatorio()">Ocupar aleatório</button>
-            <button onclick="resetarBases()">Resetar</button>
-          </div>
-        </div>
-      </div>
-    </section>
+                <div class="cards">
 
-    <!-- PEDIDOS -->
-    <section id="pedidos" class="secao" style="display:none;">
-      <h2>Pedidos</h2>
+                    <!-- ESTOQUE -->
+                    <div class="card">
+                        <div class="card-img-wrapper">
+                            <img src="bancada_estoque.png" class="card-img">
+                        </div>
+                        <div class="card-content">
+                            <h3>Estoque</h3>
+                            <p>Temperatura: <span class="valor">--</span></p>
+                            <p>Umidade: <span class="valor">--</span></p>
+                            <p>Bases livres: <span id="basesLivres">--</span> / 28</p>
+                            <div id="listaBases" class="bases-grid"></div>
+                            <button class="btn" id="btnRandomOccupy">Ocupar aleatório</button>
+                            <button class="btn" onclick="resetarBases()">Resetar</button>
+                        </div>
+                    </div>
 
-      <div class="box">
-        <h3>Novo Pedido</h3>
-        <input id="pedidoCliente" placeholder="Cliente">
+                    <!-- PROCESSO -->
+                    <div class="card">
+                        <div class="card-img-wrapper">
+                            <img src="bancada_processo.png" class="card-img">
+                        </div>
+                        <div class="card-content">
+                            <h3>Processo</h3>
+                            <p>Temperatura: <span class="valor">--</span></p>
+                            <p>Umidade: <span class="valor">--</span></p>
+                            <p>Estoque: <span class="valor">--</span></p>
+                        </div>
+                    </div>
 
-        <select id="pedidoBase">
-          <option>Azul</option>
-          <option>Preto</option>
-          <option>Vermelho</option>
-        </select>
+                    <!-- MONTAGEM -->
+                    <div class="card">
+                        <div class="card-img-wrapper">
+                            <img src="bancada_montagem.png" class="card-img">
+                        </div>
+                        <div class="card-content">
+                            <h3>Montagem</h3>
+                            <p>Temperatura: <span class="valor">--</span></p>
+                            <p>Umidade: <span class="valor">--</span></p>
+                            <p>Status: <span class="valor">--</span></p>
+                        </div>
+                    </div>
 
-        <select id="pedidoStatus">
-          <option>Não iniciado</option>
-          <option>Em processo</option>
-          <option>Finalizado</option>
-        </select>
+                    <!-- EXPEDIÇÃO -->
+                    <div class="card">
+                        <div class="card-img-wrapper">
+                            <img src="bancada_expedicao (1).png" class="card-img">
+                        </div>
+                        <div class="card-content">
+                            <h3>Expedição</h3>
+                            <p>Temperatura: <span class="valor">--</span></p>
+                            <p>Umidade: <span class="valor">--</span></p>
+                            <p>Ocupados: <span id="expOccupied">--</span></p>
+                            <div id="listaExpedicao" class="exp-grid"></div>
+                        </div>
+                    </div>
 
-        <button onclick="criarPedido()">Criar</button>
-      </div>
+                </div>
+            </section>
 
-      <div class="box">
-        <h3>Pedidos Registrados</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Cliente</th>
-              <th>Base</th>
-              <th>Status</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-          <tbody id="listaPedidos"></tbody>
-        </table>
-      </div>
+            <!-- USUÁRIOS -->
+            <section id="usuarios" class="secao" style="display:none;">
+                <h2>Usuários</h2>
+                <div class="container-usuarios">
+                    <div class="box">
+                        <h3>Cadastrar / Editar</h3>
+                        <input id="nome" placeholder="Nome">
+                        <input id="sobrenome" placeholder="Sobrenome">
+                        <input id="nascimento" type="date">
+                        <input id="email" placeholder="E-mail">
+                        <input id="senha" type="password" placeholder="Senha">
+                        <select id="tipoUsuario">
+                            <option value="professor">Professor</option>
+                            <option value="aluno">Aluno</option>
+                        </select>
+                        <div style="display:flex;gap:8px;">
+                            <button class="btn" id="btnCadastrar">Salvar</button>
+                            <button class="btn" id="btnCancelarEdit" style="background:#777">Cancelar</button>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <h3>Lista de Usuários</h3>
+                        <input id="buscar" placeholder="Buscar" style="margin-bottom:10px;width:100%;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nome</th><th>Sobrenome</th><th>Nasc.</th>
+                                    <th>E-mail</th><th>Tipo</th><th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="listaUsuarios"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
 
-    </section>
+            <!-- PEDIDOS -->
+            <section id="pedidos" class="secao" style="display:none;">
+                <h2>Pedidos</h2>
+                <div class="box">
+                    <h3>Novo Pedido</h3>
+                    <input id="pedidoCliente" placeholder="Cliente">
+                    <label>Base</label>
+                    <select id="pedidoBase">
+                        <option>Azul</option>
+                        <option>Preto</option>
+                        <option>Vermelho</option>
+                    </select>
+                    <label>Paredes</label>
+                    <input id="paredeA" placeholder="Parede A">
+                    <input id="paredeB" placeholder="Parede B">
+                    <input id="paredeC" placeholder="Parede C">
+                    <label>Status</label>
+                    <select id="pedidoStatus">
+                        <option>Não iniciado</option>
+                        <option>Aguardando módulo</option>
+                        <option>Em processo</option>
+                        <option>Finalizado</option>
+                        <option>Cancelado</option>
+                    </select>
+                    <button class="btn" id="btnCriarPedido">Criar</button>
+                </div>
+                <div class="box" style="margin-top:12px;">
+                    <h3>Pedidos Registrados</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th><th>Cliente</th><th>Base</th>
+                                <th>Status</th><th>Local</th><th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="listaPedidos"></tbody>
+                    </table>
+                </div>
+            </section>
 
-  </main>
-</div>
+        </main>
+    </div>
 
-<script src="bancada.js"></script>
+    <script src="bancada.js"></script>
 </body>
 </html>
