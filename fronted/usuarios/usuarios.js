@@ -28,22 +28,16 @@ function salvarUsuario() {
   const usuario = {
     nome: nomeInput.value,
     sobrenome: sobrenomeInput.value,
+    nascimento: dt_nascimentoInput.value,
+    email: emailInput.value,
+    senha: senhaInput.value,
     tipo: tipoUsuario.value
   }
 
-  if (!usuario.nome || !usuario.sobrenome) {
-    alert("Preencha tudo")
-    return
-  }
-
-  if (editando === null) {
-    usuariosDB.push(usuario)
-  } else {
-    usuariosDB[editando] = usuario
-    editando = null
-  }
-
-  localStorage.setItem("usuariosDB", JSON.stringify(usuariosDB))
+  fetch("http://localhost:1880/cadastrar/usuario",{
+    method: "POST",
+    body: JSON.stringify(usuario),
+  })
   limparCampos()
   renderUsuarios()
 }
@@ -54,6 +48,7 @@ function editarUsuario(i) {
   sobrenomeInput.value = u.sobrenome
   tipoUsuario.value = u.tipo
   editando = i
+  fetch("http://localhost:1880/editarusuario",)
 }
 
 function login(e) {
